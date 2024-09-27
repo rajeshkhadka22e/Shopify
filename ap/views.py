@@ -69,11 +69,62 @@ def orders(request):
 def change_password(request):
  return render(request, 'app/changepassword.html')
 
-def mobile(request):
- return render(request, 'app/mobile.html')
+# def mobile(request, data=None):
+#     if data is None:
+#         mobiles = Product.objects.filter(Category='M')  # Show all mobiles
+#     elif data in ['Redmi', 'Samsung']:
+#         mobiles = Product.objects.filter(Category='M', Brand=data)  # Filter by brand
+#     elif data == 'Below':
+#         mobiles = Product.objects.filter(Category='M', Discounted_price__lt=10000)  # Price below 10,000
+#     elif data == 'Above':
+#         mobiles = Product.objects.filter(Category='M', Discounted_price__gt=10000)  # Price above 10,000
+#     else:
+#         mobiles = []  # Default to an empty list if no match is found
+
+#     return render(request, 'app/mobile.html', {'mobiles': mobiles})
+
+
+
+def mobile(request, data=None):
+    if data is None:
+        # Show all mobile products if no filter is provided
+        mobiles = Product.objects.filter(Category='M')
+    elif data in ['Redmi', 'Samsung']:
+        # Filter by brand (Change from 'brand' to 'Brand' to match your model)
+        mobiles = Product.objects.filter(Category='M', Brand=data)  # Changed 'brand' to 'Brand'
+    elif data == 'Below':
+        # Filter for discounted prices below 10,000
+        mobiles = Product.objects.filter(Category='M', Discounted_price__lt=10000)
+    elif data == 'Above':
+        # Filter for discounted prices above 10,000
+        mobiles = Product.objects.filter(Category='M', Discounted_price__gt=10000)
+    else:
+        # Handle case where the data does not match any known filters
+        mobiles = []  # Default to an empty list if no match is found
+
+    return render(request, 'app/mobile.html', {'mobiles': mobiles})  # Pass filtered products to the template
+
+def laptop(request, data=None):
+    if data is None:
+        # Show all mobile products if no filter is provided
+        laptop = Product.objects.filter(Category='L')
+    elif data in ['MAC', 'ACER']:
+        # Filter by brand (Change from 'brand' to 'Brand' to match your model)
+        laptop = Product.objects.filter(Category='L', Brand=data)  # Changed 'brand' to 'Brand'
+    elif data == 'Below':
+        # Filter for discounted prices below 10,000
+        laptop = Product.objects.filter(Category='L', Discounted_price__lt=50000)
+    elif data == 'Above':
+        # Filter for discounted prices above 10,000
+        laptop = Product.objects.filter(Category='L', Discounted_price__gt=100000)
+    else:
+        # Handle case where the data does not match any known filters
+        laptop = []  # Default to an empty list if no match is found
+
+    return render(request, 'app/laptop.html', {'laptop': laptop})  # Pass filtered products to the template
 
 def login(request):
- return render(request, 'app/login.html')
+ return render(request, 'app/login.html',)
 
 def customerregistration(request):
  return render(request, 'app/customerregistration.html')

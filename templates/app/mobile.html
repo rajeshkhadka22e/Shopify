@@ -3,13 +3,44 @@
 {% block title %}Buy Now{% endblock title %}
 {% block main-content %}
 <div class="container my-5">
- <div class="row">
-  <div class="col-sm-3">
-   Side Bar for Mobile filter
-  </div>
-  <div class="col-sm-8 offset-sm-1">
-   Mobile Product List
-  </div>
- </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 mb-4">
+            <div class="card" style="width: 100%;">
+                <a href="{% url 'mobile' %}" class="card-header text-center">
+                    All Mobile
+                </a>
+                <ul class="list-group list-group-flush">
+                    <a href="{% url 'mobiledata' 'Samsung' %}" class="list-group-item">Samsung</a>
+                    <a href="{% url 'mobiledata' 'Redmi' %}" class="list-group-item">Redmi</a>
+                    <a href="{% url 'mobiledata' 'Below' %}" class="list-group-item">Below 10,000</a>
+                    <a href="{% url 'mobiledata' 'Above' %}" class="list-group-item">Above 10,000</a>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-9">  <!-- Adjust column for product display -->
+            <h1 class="mb-3">All Mobile Products</h1>  <!-- Heading with margin-bottom -->
+            <div class="row">  <!-- Start a new Bootstrap row -->
+                {% for mobile in mobiles %}
+                    <div class="col-6 col-md-4">  <!-- Adjust column width for responsiveness -->
+                        <div class="card mb-4 d-flex flex-column">  <!-- Add Bootstrap card for styling and use flex-column -->
+                            <img src="{{ mobile.Product_image.url }}" class="card-img-top" alt="{{ mobile.Title }}" style="height: 200px; object-fit: contain;">  <!-- Set height and object-fit to contain -->
+                            <div class="card-body flex-grow-1">  <!-- Make card body grow to fill space -->
+                                <h5 class="card-title">{{ mobile.Title }}</h5>
+                                <p class="card-text">Description: {{ mobile.Description }}</p>
+                                <p class="card-text">Brand: {{ mobile.Brand }}</p>
+                                <p class="card-text">Selling Price: {{ mobile.selling_price }}</p>
+                                <p class="card-text">Discounted Price: {{ mobile.Discounted_price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12">  <!-- Full-width column for the empty message -->
+                        <div class="alert alert-warning">No mobile products available.</div>  <!-- Bootstrap alert for no products -->
+                    </div>
+                {% endfor %}
+            </div>  <!-- End of Bootstrap row -->
+        </div>
+    </div>
 </div>
 {% endblock main-content %}

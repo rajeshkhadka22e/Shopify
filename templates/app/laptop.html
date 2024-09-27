@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-12 col-md-3 mb-4">
+            <div class="card" style="width: 100%;">
+                <a href="{% url 'laptop' %}" class="card-header text-center">
+                    All Laptop
+                </a>
+                <ul class="list-group list-group-flush ">
+                    <a href="{% url 'laptopdata' 'mac' %}" class="list-group-item">MAC</a>
+                    <a href="{% url 'laptopdata' 'acer' %}" class="list-group-item">ACER</a>
+                    <a href="{% url 'laptopdata' 'Below' %}" class="list-group-item">Below 50,000</a>
+                    <a href="{% url 'laptopdata' 'Above' %}" class="list-group-item">Above 100,000</a>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-9">  <!-- Adjust column for product display -->
+            <h1 class="mb-3">All LAPTOP PRODUCTS</h1>  <!-- Heading with margin-bottom -->
+            <div class="row">  <!-- Start a new Bootstrap row -->
+                {% for laptop in laptop %}
+                    <div class="col-6 col-md-4">  <!-- Adjust column width for responsiveness -->
+                        <div class="card mb-4 d-flex flex-column">  <!-- Add Bootstrap card for styling and use flex-column -->
+                            <img src="{{ laptop.Product_image.url }}" class="card-img-top" alt="{{ laptop.Title }}" style="height: 200px; object-fit: contain;">  <!-- Set height and object-fit to contain -->
+                            <div class="card-body flex-grow-1">  <!-- Make card body grow to fill space -->
+                                <h5 class="card-title">{{ laptop.Title }}</h5>
+                                <p class="card-text">Description: {{ laptop.Description }}</p>
+                                <p class="card-text">Brand: {{ laptop.Brand }}</p>
+                                <p class="card-text">Selling Price: {{ laptop.selling_price }}</p>
+                                <p class="card-text">Discounted Price: {{ laptop.Discounted_price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12">  <!-- Full-width column for the empty message -->
+                        <div class="alert alert-warning">No LAPTOP products available.</div>  <!-- Bootstrap alert for no products -->
+                    </div>
+                {% endfor %}
+            </div>  <!-- End of Bootstrap row -->
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

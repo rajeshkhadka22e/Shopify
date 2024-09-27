@@ -75,7 +75,7 @@
 <!-- 1st Product Slider -->
 
 <div class="mx-3 ">
-  <h2>SHOPFY Deals of The Day</h2>
+  <h2>SHOPFY Deals of The Day For topwears</h2>
     <div class="d-flex flex-wrap justify-content-start">
     {% for prod in Top_wear %}
     <a href="{% url 'product-detail' prod.pk %}" class="text-decoration-none">
@@ -183,8 +183,8 @@
         <img class="card-img-top img-fluid" src="{{ prod.Product_image.url }}" alt="{{ prod.Title }}" style="object-fit: cover; height: 200px;">
         <div class="card-body">
           <h5 class="card-title">{{ prod.Title }}</h5>
-          <p class="card-text text-decoration-line-through">RS {{ prod.selling_price }}</p>
-          <p class="card-text">RS {{ prod.Discounted_price }}</p>
+          <span>selling price:<span class="card-text text-decoration-line-through">RS {{ prod.selling_price }}</span> </span>
+          <p class="card-text">Discounted Price: RS {{ prod.Discounted_price }}</p>
           <p class="card-text">{{ prod.Description }}</p>
         </div>
       </div>
