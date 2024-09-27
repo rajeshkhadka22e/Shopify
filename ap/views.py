@@ -69,20 +69,6 @@ def orders(request):
 def change_password(request):
  return render(request, 'app/changepassword.html')
 
-# def mobile(request, data=None):
-#     if data is None:
-#         mobiles = Product.objects.filter(Category='M')  # Show all mobiles
-#     elif data in ['Redmi', 'Samsung']:
-#         mobiles = Product.objects.filter(Category='M', Brand=data)  # Filter by brand
-#     elif data == 'Below':
-#         mobiles = Product.objects.filter(Category='M', Discounted_price__lt=10000)  # Price below 10,000
-#     elif data == 'Above':
-#         mobiles = Product.objects.filter(Category='M', Discounted_price__gt=10000)  # Price above 10,000
-#     else:
-#         mobiles = []  # Default to an empty list if no match is found
-
-#     return render(request, 'app/mobile.html', {'mobiles': mobiles})
-
 
 
 def mobile(request, data=None):
@@ -108,7 +94,7 @@ def laptop(request, data=None):
     if data is None:
         # Show all mobile products if no filter is provided
         laptop = Product.objects.filter(Category='L')
-    elif data in ['MAC', 'ACER']:
+    elif data in ['MAC', 'Samsung']:
         # Filter by brand (Change from 'brand' to 'Brand' to match your model)
         laptop = Product.objects.filter(Category='L', Brand=data)  # Changed 'brand' to 'Brand'
     elif data == 'Below':
@@ -122,6 +108,44 @@ def laptop(request, data=None):
         laptop = []  # Default to an empty list if no match is found
 
     return render(request, 'app/laptop.html', {'laptop': laptop})  # Pass filtered products to the template
+
+def topwears(request, data=None):
+    if data is None:
+        # Show all mobile products if no filter is provided
+        topwears = Product.objects.filter(Category='T')
+    elif data in ['tshirt', 'vest']:
+        # Filter by brand (Change from 'brand' to 'Brand' to match your model)
+        mobitopwearsles = Product.objects.filter(Category='T', Brand=data)  # Changed 'brand' to 'Brand'
+    elif data == 'Below':
+        # Filter for discounted prices below 10,000
+        topwears = Product.objects.filter(Category='T', Discounted_price__lt=10000)
+    elif data == 'Above':
+        # Filter for discounted prices above 10,000
+        topwears = Product.objects.filter(Category='T', Discounted_price__gt=10000)
+    else:
+        # Handle case where the data does not match any known filters
+        topwears = []  # Default to an empty list if no match is found
+
+    return render(request, 'app/topwears.html', {'topwears': topwears})  # Pass filtered products to the template
+
+def bottomwears(request, data=None):
+    if data is None:
+        # Show all mobile products if no filter is provided
+        bottomwears = Product.objects.filter(Category='B')
+    elif data in ['pant', 'halfpant']:
+        # Filter by brand (Change from 'brand' to 'Brand' to match your model)
+        bottomwears = Product.objects.filter(Category='B', Brand=data)  # Changed 'brand' to 'Brand'
+    elif data == 'Below':
+        # Filter for discounted prices below 10,000
+        bottomwears = Product.objects.filter(Category='B', Discounted_price__lt=50000)
+    elif data == 'Above':
+        # Filter for discounted prices above 10,000
+        bottomwears = Product.objects.filter(Category='B', Discounted_price__gt=100000)
+    else:
+        # Handle case where the data does not match any known filters
+        bottomwears = []  # Default to an empty list if no match is found
+
+    return render(request, 'app/bottomwears.html', {'bottomwears': bottomwears})  # Pass filtered products to the template
 
 def login(request):
  return render(request, 'app/login.html',)
