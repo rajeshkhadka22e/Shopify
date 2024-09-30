@@ -94,7 +94,7 @@ def laptop(request, data=None):
     if data is None:
         # Show all mobile products if no filter is provided
         laptop = Product.objects.filter(Category='L')
-    elif data in ['MAC', 'Samsung']:
+    elif data in ['MAC', 'Acer']:
         # Filter by brand (Change from 'brand' to 'Brand' to match your model)
         laptop = Product.objects.filter(Category='L', Brand=data)  # Changed 'brand' to 'Brand'
     elif data == 'Below':
@@ -115,7 +115,7 @@ def topwears(request, data=None):
         topwears = Product.objects.filter(Category='T')
     elif data in ['tshirt', 'vest']:
         # Filter by brand (Change from 'brand' to 'Brand' to match your model)
-        mobitopwearsles = Product.objects.filter(Category='T', Brand=data)  # Changed 'brand' to 'Brand'
+        topwears = Product.objects.filter(Category='T', Brand=data)  # Changed 'brand' to 'Brand'
     elif data == 'Below':
         # Filter for discounted prices below 10,000
         topwears = Product.objects.filter(Category='T', Discounted_price__lt=10000)

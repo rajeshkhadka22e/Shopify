@@ -21,16 +21,16 @@
         <div class="col-sm-12 col-md-9">  <!-- Adjust column for product display -->
             <h1 class="mb-3">All bottomwears PRODUCTS</h1>  <!-- Heading with margin-bottom -->
             <div class="row">  <!-- Start a new Bootstrap row -->
-                {% for laptop in laptop %}
+                {% for bottomwears in bottomwears %}
                     <div class="col-6 col-md-4">  <!-- Adjust column width for responsiveness -->
                         <div class="card mb-4 d-flex flex-column">  <!-- Add Bootstrap card for styling and use flex-column -->
-                            <img src="{{ laptop.Product_image.url }}" class="card-img-top" alt="{{ laptop.Title }}" style="height: 200px; object-fit: contain;">  <!-- Set height and object-fit to contain -->
+                            <img src="{{ bottomwears.Product_image.url }}" class="card-img-top" alt="{{ bottomwears.Title }}" style="height: 200px; object-fit: contain;">  <!-- Set height and object-fit to contain -->
                             <div class="card-body flex-grow-1">  <!-- Make card body grow to fill space -->
-                                <h5 class="card-title">{{ laptop.Title }}</h5>
-                                <p class="card-text">Description: {{ laptop.Description }}</p>
-                                <p class="card-text">Brand: {{ laptop.Brand }}</p>
-                                <p class="card-text">Selling Price: {{ laptop.selling_price }}</p>
-                                <p class="card-text">Discounted Price: {{ laptop.Discounted_price }}</p>
+                                <h5 class="card-title">{{ bottomwears.Title }}</h5>
+                                <p class="card-text">Description: {{ bottomwears.Description }}</p>
+                                <p class="card-text">Brand: {{ bottomwears.Brand }}</p>
+                                <p class="card-text">Selling Price: {{ bottomwears.selling_price }}</p>
+                                <p class="card-text">Discounted Price: {{ bottomwears.Discounted_price }}</p>
                             </div>
                         </div>
                     </div>
